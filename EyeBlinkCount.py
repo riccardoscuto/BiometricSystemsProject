@@ -10,9 +10,7 @@ def mid_line_distance(p1 ,p2, p3, p4):
     """compute the euclidean distance between the midpoints of two sets of points"""
     p5 = np.array([int((p1[0] + p2[0])/2), int((p1[1] + p2[1])/2)])
     p6 = np.array([int((p3[0] + p4[0])/2), int((p3[1] + p4[1])/2)])
-
     return norm(p5 - p6)
-
 def aspect_ratio(landmarks, eye_range):
     # Get the eye coordinates
     eye = np.array(
@@ -75,7 +73,9 @@ def checkBlink(number_blinks_required):
             # draw the eye aspect ratio and the number of blinks on the frame
             cv2.putText(frame, "Blinks: {}".format(blinks), (10, 30),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
-            cv2.putText(frame, "Eye Aspect Ratio: {:.2f}".format(ear), (300, 30),
+            cv2.putText(frame, "Press a to confirm".format(ear), (300, 30),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+            cv2.putText(frame, "Press w to reset".format(ear), (300, 60),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
     
         cv2.imshow("Frame", frame)
@@ -85,7 +85,7 @@ def checkBlink(number_blinks_required):
             if int(blinks) == int(number_blinks_required):
                 vs.release()
                 cv2.destroyWindow("Frame")
-                print("SONO USCITOOOOOOOOO")
+                print("Exit")
                 return  True
             else: 
                 vs.release()
