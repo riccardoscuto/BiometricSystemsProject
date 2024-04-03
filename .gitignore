@@ -1,0 +1,9 @@
+dlib-19.22.99-cp39-cp39-win_amd64.whl
+shape_predictor_68_face_landmarks.dat
+/GUIFiles/*
+/iris-recognition-env/Lib/*
+/database/*
+!/*/.gitkeep
+/Screenshots/*
+BS.py
+IrisRecognitionRegistrationDatabaseSystem.py
