@@ -383,6 +383,8 @@ class Ui_MainWindow(QWidget):
         brute_f = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
         matchesOriginal = brute_f.match(des1, des1)  
         matchesNew = brute_f.match(des1, des2)  
+        matching_result = cv2.drawMatches(image_1, keypoints_img1, image_2, keypoints_img2, matchesNew, None)
+
         if len(matchesOriginal) != 0:
             match_rate = (len(matchesNew)/len(matchesOriginal))*100
         else:
@@ -391,6 +393,8 @@ class Ui_MainWindow(QWidget):
         if match_rate > 18:
             print("IRIS MATCH FOUND IN DATABASE.")
             print("il mr è ", match_rate)
+            cv2.imshow("matching", cv2.resize(matching_result, (700, 700)))
+
             return True
         else:
             print("NO IRIS MATCH FOUND IN DATABASE.")
@@ -433,12 +437,18 @@ class Ui_MainWindow(QWidget):
         height = incomingImage.height()
         ptr = incomingImage.bits()
         ptr.setsize(incomingImage.byteCount())
-        arr = np.array(ptr).reshape(height, width, 4) 
-        cv2.imwrite('database\\tempfile.png', arr)
+        arr = np.array(ptr).reshape(height, width, 4)
+        irideSegmentata, _x, _y, _r = segmenta_iride(arr)
+        if irideSegmentata is None or _x is None or _y is None or _r is None:
+            print("Errore.")
+            return
+
+        polar_iris = get_polar_to_cart_img(irideSegmentata, (_x, _y), 20, _r, _r*2, _r*2 )
+        cv2.imwrite('database\\tempfile.png', polar_iris)
         # image_1 = cv2.imread('database\\tempfile.jpg')
         image_1 = cv2.imread('database\\tempfile.png')
         image_2 = cv2.imread('database\\' + iris_f_name) 
-        os.remove('database\\tempfile.png')
+        # os.remove('database\\tempfile.png')
         is_matched = ui.iris_match_res(image_1, image_2)
         
         if is_matched == True:
