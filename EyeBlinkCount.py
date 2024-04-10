@@ -28,7 +28,7 @@ def checkBlink(number_blinks_required):
     predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
     vs = cv2.VideoCapture(1)
-    print("SONO NUMERI", number_blinks_required)
+    print("Numbers Required", number_blinks_required)
     while True:
         _, frame = vs.read()
         frame = cv2.resize(frame, (600, 450))
