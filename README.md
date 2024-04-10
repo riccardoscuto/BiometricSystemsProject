@@ -1,9 +1,9 @@
-## Requirements	
+# Requirements	
 Download shape_predictor_68_face_landmarks predictor https://drive.google.com/drive/folders/1wPihpGo8uJPC1Xk1HBYU4jmG1_OKXofN?usp=drive_link
 
 Install the required Python libraries by running: pip install PyQt5 opencv-python dlib numpy Pillow.
 
-## Demo
+# Demo
 
 - **Initialization**: Run `Main.py` to initiate the application.
 
