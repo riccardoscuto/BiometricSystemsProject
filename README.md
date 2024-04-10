@@ -10,7 +10,8 @@ Start the Application: run Main.py
 Click on the "Register User" button to start the registration process.
 Position your face within the camera's field of view as indicated by the on-screen instructions.
 The system will  capture your  and prompt you to enter user details (ID, Name, Age, Blink count).
-After entering the details, click "OK" to complete the registration.
+After entering the details, click "OK" to complete the registration. 
+A text box will open where you can enter passwords to be protected.
 
 **Verify Registered User**:
 Select "Verify User" to start verification.
